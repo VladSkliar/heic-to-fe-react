@@ -28,7 +28,7 @@ function App() {
         formData.append('file', selectedFile);
 
         try {
-            const response = await fetch('https://heicto.onrender.com/convert/heic-to-jpeg/', {
+            const response = await fetch('https://heicto.onrender.com/convert/heic-to-jpeg', {
                 method: 'POST',
                 body: formData,
             });
