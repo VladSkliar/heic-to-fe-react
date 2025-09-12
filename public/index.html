@@ -55,6 +55,163 @@
 
 
     <title>HEIC to JPG Converter – Free & Fast Online Tool | HeicTo</title>
+
+    <!-- Existing head content -->
+    <style>
+      .format-descriptions {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        display: flex;
+        gap: 2rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+      }
+      .format-description {
+        flex: 1;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+      .format-description h2 {
+        margin-bottom: 1rem;
+        color: #333;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 0.5rem;
+      }
+      .format-description p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+      }
+      .format-description .full-description {
+        display: none;
+      }
+      .format-description .read-more {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+      }
+      .format-description .read-more:hover {
+        background-color: #0056b3;
+      }
+      .format-description .convert-link {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .format-description .convert-link:hover {
+        background-color: #218838;
+      }
+
+      /* Mobile Responsiveness */
+      @media screen and (max-width: 768px) {
+        .format-descriptions {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .format-description {
+          width: 100%;
+          max-height: 300px;
+          overflow: hidden;
+          position: relative;
+        }
+        .format-description::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100px;
+          background: linear-gradient(transparent, white);
+          pointer-events: none;
+        }
+        .format-description .initial-description {
+          max-height: 200px;
+          overflow: hidden;
+        }
+        .format-description .full-description {
+          display: none;
+        }
+        .format-description.expanded {
+          max-height: none;
+        }
+        .format-description.expanded::after {
+          display: none;
+        }
+        .format-description.expanded .full-description {
+          display: block;
+        }
+        .format-description.expanded .initial-description {
+          max-height: none;
+        }
+      }
+      /* Hide Read More buttons on non-mobile screens */
+      @media screen and (min-width: 769px) {
+        .format-description .read-more {
+          display: none !important;
+        }
+        .format-description .initial-description,
+        .format-description .full-description {
+          display: block !important;
+          max-height: none !important;
+        }
+        .format-description::after {
+          display: none !important;
+        }
+      }
+
+      /* Ensure full description is visible on non-mobile */
+      @media screen and (min-width: 769px) {
+        .format-description .full-description {
+          display: block;
+        }
+      }
+
+    </style>
+    <script>
+      function toggleDescription(element) {
+        const formatDescription = element.closest('.format-description');
+        formatDescription.classList.toggle('expanded');
+
+        // Change button text
+        const readMoreBtn = element;
+        readMoreBtn.textContent = formatDescription.classList.contains('expanded')
+          ? 'Show Less'
+          : 'Read More';
+      }
+    </script>
+    <!-- Early Preconnect and DNS Prefetch -->
+    <link rel="preconnect" href="https://heicto.onrender.com" crossorigin>
+    <link rel="dns-prefetch" href="https://heicto.onrender.com">
+
+    <!-- Minimal Inline Critical CSS -->
+    <style>
+      /* Critical rendering path styles */
+      body {
+        font-family: -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <!-- Defer Non-Critical CSS -->
+    <link rel="stylesheet" href="/static/css/main.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/static/css/main.css"></noscript>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -69,5 +226,33 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <!-- Format Descriptions Block -->
+    <div class="format-descriptions">
+      <div class="format-description heic-format">
+        <h2>HEIC — High Efficiency Image Container</h2>
+        <div class="initial-description">
+          <p>HEIC is a file extension used by Apple for images in the HEIF (High Efficiency Image Format), usually compressed with the HEVC (High Efficiency Video Compression) codec.</p>
+        </div>
+        <div class="full-description">
+          <p>This format works perfectly for Apple's live photos, as it can contain sequences of images.</p>
+          <p>The biggest advantage is storage efficiency: you can keep twice as many photos in HEIC compared to JPEG at the same size and quality, thanks to next-generation compression.</p>
+        </div>
+        <button class="read-more" onclick="toggleDescription(this)">Read More</button>
+      </div>
+
+      <div class="format-description jpg-format">
+        <h2>JPG — Joint Photographic Experts Group</h2>
+        <div class="initial-description">
+          <p>The JPG extension is assigned to image files. It's one of the most common formats used for photographs and web graphics.</p>
+        </div>
+        <div class="full-description">
+          <p>To reduce file size, raster images are stored in .jpg, which makes them easier to share and upload online.</p>
+          <p>JPG is based on a 24-bit color palette. The stronger the compression applied during file creation, the more visible the loss of quality when the image is uncompressed.</p>
+        </div>
+        <button class="read-more" onclick="toggleDescription(this)">Read More</button>
+      </div>
+    </div>
+
   </body>
 </html>
